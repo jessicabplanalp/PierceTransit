@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<!--
+	Escape Velocity by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+
+  <title>Pierce Transit Bus Lines and Boundries</title>
+
+  <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- leaflet CSS and JS library -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+
+  <!-- Make sure you put this (Leaflet JS library) AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
+
+   <!-- Add JQuery to get local GeoJson file -->
+     		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Choropleth JS plugin from http://timwis.com/leaflet-choropleth/
+        <script src="https://timwis.com/leaflet-choropleth/dist/choropleth.js"></script>-->
+
+  <!-- A style for the map element -->
+  <style>
+    	#map{ width: 1000px; height: 600px;}
+
+    	.legend {
+    		color: #fff;
+      		padding: 6px 8px;
+      		font: 10px Arial, Helvetica, sans-serif;
+      		font-weight: bold;
+      		background: white;
+      		background: rgba(0,0,0,0.8);
+      		box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      		border-radius: 5px;
+    	}
+
+    	.legend ul {
+      		list-style-type: none;
+      		padding: 0;
+      		margin: 0;
+      		clear: both;
+    	}
+
+    	.legend li {
+      		display: inline-block;
+      		width: 38px;
+      		height: 22px;
+    	}
+
+    	.legend .min {
+      		float: left;
+      		padding-bottom: 5px;
+    	}
+
+    	.legend .max {
+      		float: right;
+    	}
+  		</style>
+
+</head>
+
+<body>
+
+   <!-- Main -->
+ <center>
+ <div class="wrapper style1">
+ <div class="container">
+   <article id="main" class="special">
+ <header>
+   <h2><font color="#1c9099">Pierce Transit Bus Lines and Boundries</h2>
+   <p>This map outlines the service area of Pierce Transit busses as well as their current routes. </p>
+   This map demonstrates two sources of static data and was created using Leaflet.</font>
+ </header>
+<!-- the map element -->
+ <center>
+ <div id="mapid" style="width: 800px; height: 600px;"></div>
+
+<!-- the script for my Leaflet Map -->
+<script>
+   var mymap = L.map('mapid').setView([47.258728, -122.465973], 10);
+
+   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamVzc2ljYWJwbGFuYWxwIiwiYSI6ImNrMndvN2g0cjBoam0zYmw2eXd0bm12bTcifQ.RNICUHzCzEvRkIPxzq_RBg', {
+   		maxZoom: 18,
+   		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+   			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+   			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+   		id: 'mapbox/streets-v11'
+   	}).addTo(mymap);
+
+    // load GeoJSON from an external file
+    $.getJSON("Converted-Data-Files/USEMEOld_Pierce_Transit.zip.geojson",function(data){
+      // add GeoJSON layer to the map once the file is loaded
+      L.geoJson(data).addTo(mymap);
+    });
+
+    // load GeoJSON from an external file
+    $.getJSON("Converted-Data-Files/USEMERTABoundry.geojson",function(data){
+      // add GeoJSON layer to the map once the file is loaded
+      L.geoJson(data).addTo(mymap);
+    });
+
+</script>
+
+   <!-- Footer -->
+			<div id="footer">
+	 <!-- Copyright -->
+			<div class="copyright">
+			<ul class="menu">
+			<li>&copy; Jessica Abplanalp. All rights reserved.</li>
+      <!-- uncomment this if you use the template
+      <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+      -->
+			</ul>
+			</div>
+			</div>
+		  </div>
+
+   <!-- Scripts -->
+   			<script src="assets/js/jquery.min.js"></script>
+   			<script src="assets/js/jquery.dropotron.min.js"></script>
+   			<script src="assets/js/jquery.scrolly.min.js"></script>
+   			<script src="assets/js/jquery.scrollex.min.js"></script>
+   			<script src="assets/js/browser.min.js"></script>
+   			<script src="assets/js/breakpoints.min.js"></script>
+   			<script src="assets/js/util.js"></script>
+   			<script src="assets/js/main.js"></script>
+   </body>
+   </html>
