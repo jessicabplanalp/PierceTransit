@@ -145,7 +145,7 @@
     // load GeoJSON from an external file
     $.getJSON("Converted-Data-Files/USEMERTABoundry.geojson",function(data){
       // add GeoJSON layer to the map once the file is loaded
-      L.geoJson(data).addTo(mymap);
+      L.geoJson(data,{style: { color: 'purple', weight: 2}}).addTo(mymap);
     });
 
 </script>
