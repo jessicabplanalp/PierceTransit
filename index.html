@@ -139,13 +139,13 @@
     // load GeoJSON from an external file
     $.getJSON("Converted-Data-Files/USEMEOld_Pierce_Transit.zip.geojson",function(data){
       // add GeoJSON layer to the map once the file is loaded
-      L.geoJson(data).addTo(mymap);
+      L.geoJson(data,{style: { color: 'Teal', weight: 3}}).addTo(mymap);
     });
 
     // load GeoJSON from an external file
     $.getJSON("Converted-Data-Files/USEMERTABoundry.geojson",function(data){
       // add GeoJSON layer to the map once the file is loaded
-      L.geoJson(data,{style: { color: 'purple', weight: 2}}).addTo(mymap);
+      L.geoJson(data,{style: { color: 'LightSeaGreen', weight: 2}}).addTo(mymap);
     });
 
 </script>
