@@ -128,37 +128,17 @@
    		id: 'mapbox/streets-v11'
    	}).addTo(mymap);
 
-	
-	                        // Creating a marker
-         var marker = L.marker([47.2529, -122.4443]);
-         
-         // Adding marker to the map
-         marker.addTo(mymap);
+	//adding a pop up
+	  var popup = L.popup();
 
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(mymap);
+}
 
-//adding a feature under the mouse pointer	
-map.on('mousemove', function (e) {
-var features = map.queryRenderedFeatures(e.point);
- 
-// Limit the number of properties we're displaying for
-// legibility and performance
-var displayProperties = [
-"type",
-"properties",
-"id",
-"layer",
-"source",
-"sourceLayer",
-"state",
-];
- 
-var displayFeatures = features.map(function(feat) {
-var displayFeat = {};
-displayProperties.forEach(function(prop) {
-displayFeat[prop] = feat[prop];
-});
-return displayFeat;
-});
+mymap.on('click', onMapClick);
  	
 	
 	
