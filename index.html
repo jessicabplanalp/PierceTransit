@@ -128,6 +128,14 @@
    		id: 'mapbox/streets-v11'
    	}).addTo(mymap);
 
+	
+	                        // Creating a marker
+         var marker = L.marker([47.2529, -122.4443]);
+         
+         // Adding marker to the map
+         marker.addTo(mymap);
+	
+	
     // load GeoJSON from an external file
     $.getJSON("Converted-Data-Files/USEMEOld_Pierce_Transit.zip.geojson",function(data){
       // add GeoJSON layer to the map once the file is loaded
